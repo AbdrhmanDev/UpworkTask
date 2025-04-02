@@ -60,7 +60,7 @@
               }}</mat-icon>
               <span matLine class="lesson-name">{{ lesson.name }}</span>
               <div class="lesson-actions">
-                <button mat-icon-button (click)="goToSection(lesson)">
+                <button mat-icon-button (click)="goToSection(lesson, i)">
                   <mat-icon color="primary">open_in_new</mat-icon>
                 </button>
                 <button mat-icon-button (click)="deleteLesson(i, lesson)">
@@ -77,7 +77,7 @@
   <!-- Actions -->
   <div class="section-actions">
     <button mat-button class="add-lesson-button" (click)="openAddLessonPopup()">
-      <mat-icon color="primary">add</mat-icon>
+      <mat-icon class="add">add</mat-icon>
       Add a lesson
     </button>
     <button mat-button class="search-button" (click)="openSearch()">

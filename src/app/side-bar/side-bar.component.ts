@@ -12,6 +12,7 @@ import {
 } from '@angular/cdk/drag-drop';
 import { CommonModule } from '@angular/common';
 import { AddLessonPopupComponent } from '../add-lesson-popup/add-lesson-popup.component';
+import { MoveToSectionComponent } from '../move-to-section/move-to-section.component';
 
 interface Lesson {
   name: string;
@@ -136,9 +137,28 @@ export class SideBarComponent {
     }
   }
 
-  goToSection(lesson: any) {
-    // Logic to navigate to the section of the lesson
-    console.log('Navigating to section:', lesson.name);
+  goToSection(lesson: any, sectionIndex: number) {
+    const dialogRef = this.dialog.open(MoveToSectionComponent, {
+      width: '400px',
+      data: {
+        sections: this.items,
+        currentSectionIndex: sectionIndex,
+      },
+    });
+
+    dialogRef.afterClosed().subscribe((result) => {
+      if (result) {
+        // Remove the lesson from the current section
+        const currentSection = this.items[sectionIndex];
+        const lessonIndex = currentSection.lessons.indexOf(lesson);
+        if (lessonIndex > -1) {
+          currentSection.lessons.splice(lessonIndex, 1);
+          // Add the lesson to the selected section
+          const targetSection = this.items[this.items.indexOf(result)];
+          targetSection.lessons.push(lesson);
+        }
+      }
+    });
   }
 
   deleteLesson(itemIndex: number, lesson: any) {

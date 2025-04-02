@@ -92,7 +92,26 @@
     height: 36px;
     font-size: 13px;
   }
+  .add-lesson-button mat-icon{
+    border-radius: 50%;
+    background-color: #4285f4;
+    color: white;
+    padding: 4px;
+    &:hover  {
+      border-radius: 50%;
+      background-color: white;
+      color: #4285f4;
+      padding: 4px;
+    }
+  }
+  &:hover .add-lesson-button {
+    background: #4285f4;
+   
+    color: white;
+  }
+ 
 }
+
 
 mat-toolbar {
   font-size: 18px;
