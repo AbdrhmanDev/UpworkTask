@@ -1,0 +1,101 @@
+:host {
+  display: block;
+  padding: 24px;
+  max-width: 800px;
+}
+
+.dialog-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24px;
+
+  h2 {
+    margin: 0;
+    font-size: 24px;
+    font-weight: 500;
+  }
+
+  .subtitle {
+    color: #666;
+    margin-top: 4px;
+  }
+}
+
+.section-title {
+  font-size: 14px;
+  font-weight: 500;
+  color: #666;
+  margin: 16px 0;
+  text-transform: uppercase;
+}
+
+.lesson-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+.lesson-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 24px;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+
+  &:hover {
+    border-color: #1976d2;
+    background-color: #f5f5f5;
+  }
+
+  .mat-icon {
+    font-size: 32px;
+    height: 32px;
+    width: 32px;
+    margin-bottom: 12px;
+    color: #1976d2 !important;
+  }
+
+  .label {
+    font-size: 16px;
+    color: #333;
+    text-align: center;
+  }
+}
+
+.close-button {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+}
+.close-button {
+  margin: -12px -12px -12px 0;
+}
+
+::ng-deep .icon-color-0 {
+  color: #1e88e5; /* Blue */
+}
+
+::ng-deep .icon-color-1 {
+  color: #43a047; /* Green */
+}
+
+::ng-deep .icon-color-2 {
+  color: #f4511e; /* Orange */
+}
+
+::ng-deep .icon-color-3 {
+  color: #6d4c41; /* Brown */
+}
+
+::ng-deep .icon-color-exam-0 {
+  color: #8e24aa; /* Purple */
+}
+
+::ng-deep .icon-color-exam-1 {
+  color: #e53935; /* Red */
+}

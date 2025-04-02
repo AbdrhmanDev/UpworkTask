@@ -6,15 +6,42 @@
     <div cdkDrag class="item-container">
       <div class="section-header">
         <div class="drag-handle" cdkDragHandle>
-          <mat-icon>drag_indicator</mat-icon>
+          <mat-icon color="primary">drag_indicator</mat-icon>
         </div>
         <div class="section-content">
-          <h4>{{ item.name }}</h4>
-          <button mat-icon-button (click)="toggleCollapse(i)">
-            <mat-icon>{{
-              item.collapsed ? "expand_more" : "expand_less"
-            }}</mat-icon>
-          </button>
+          <div class="section-title">
+            <ng-container *ngIf="editingIndex !== i; else editMode">
+              <h4>{{ item.name }}</h4>
+            </ng-container>
+            <ng-template #editMode>
+              <input
+                [(ngModel)]="item.name"
+                (blur)="finishEditing(i)"
+                (keyup.enter)="finishEditing(i)"
+                class="edit-input"
+                #editInput
+                matInput
+                autofocus
+              />
+            </ng-template>
+            <button mat-icon-button (click)="startEditing(i)">
+              <mat-icon color="accent">edit</mat-icon>
+            </button>
+          </div>
+          <div class="section-actions">
+            <button
+              mat-icon-button
+              class="delete-section-btn"
+              (click)="deleteItem(i)"
+            >
+              <mat-icon color="warn">delete</mat-icon>
+            </button>
+            <button mat-icon-button (click)="toggleCollapse(i)">
+              <mat-icon color="primary">{{
+                item.collapsed ? "expand_more" : "expand_less"
+              }}</mat-icon>
+            </button>
+          </div>
         </div>
       </div>
     </div>
@@ -24,20 +51,20 @@
       <ng-container *ngFor="let lesson of item.lessons">
         <div cdkDrag class="lesson-container">
           <div class="drag-handle" cdkDragHandle>
-            <mat-icon>drag_indicator</mat-icon>
+            <mat-icon color="primary">drag_indicator</mat-icon>
           </div>
           <mat-list-item>
             <div class="lesson-flex-container">
-              <mat-icon matListIcon [ngClass]="lesson.type">{{
+              <mat-icon matListIcon [ngClass]="lesson.type" color="primary">{{
                 lesson.type
               }}</mat-icon>
               <span matLine class="lesson-name">{{ lesson.name }}</span>
               <div class="lesson-actions">
                 <button mat-icon-button (click)="goToSection(lesson)">
-                  <mat-icon>open_in_new</mat-icon>
+                  <mat-icon color="primary">open_in_new</mat-icon>
                 </button>
                 <button mat-icon-button (click)="deleteLesson(i, lesson)">
-                  <mat-icon>delete</mat-icon>
+                  <mat-icon color="warn">delete</mat-icon>
                 </button>
               </div>
             </div>
@@ -50,11 +77,11 @@
   <!-- Actions -->
   <div class="section-actions">
     <button mat-button class="add-lesson-button" (click)="openAddLessonPopup()">
-      <mat-icon>add</mat-icon>
+      <mat-icon color="primary">add</mat-icon>
       Add a lesson
     </button>
     <button mat-button class="search-button" (click)="openSearch()">
-      <mat-icon>search</mat-icon>
+      <mat-icon color="primary">search</mat-icon>
       Search materials
     </button>
   </div>

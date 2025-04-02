@@ -1,0 +1,33 @@
+<div class="dialog-header">
+  <div>
+    <h2>Select lesson type</h2>
+    <div class="subtitle">Select material type to continue</div>
+  </div>
+  <button mat-icon-button class="close-button" (click)="close()">
+    <mat-icon color="warn">close</mat-icon>
+  </button>
+</div>
+
+<div class="section-title">LEARNING CONTENT</div>
+<div class="lesson-grid">
+  <div
+    *ngFor="let type of learningContent; let i = index"
+    class="lesson-card"
+    (click)="selectLessonType(type)"
+  >
+    <mat-icon [ngClass]="'icon-color-' + i">{{ type.icon }}</mat-icon>
+    <span class="label">{{ type.label }}</span>
+  </div>
+</div>
+
+<div class="section-title">EXAM STUDENTS</div>
+<div class="lesson-grid">
+  <div
+    *ngFor="let type of examContent; let i = index"
+    class="lesson-card"
+    (click)="selectLessonType(type)"
+  >
+    <mat-icon [ngClass]="'icon-color-exam-' + i">{{ type.icon }}</mat-icon>
+    <span class="label">{{ type.label }}</span>
+  </div>
+</div>

@@ -1,15 +1,17 @@
 import { Component } from '@angular/core';
-import { MatDialog } from '@angular/material/dialog';
+import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
+import { FormsModule } from '@angular/forms';
 import {
   DragDropModule,
   CdkDragDrop,
   moveItemInArray,
 } from '@angular/cdk/drag-drop';
 import { CommonModule } from '@angular/common';
+import { AddLessonPopupComponent } from '../add-lesson-popup/add-lesson-popup.component';
 
 interface Lesson {
   name: string;
@@ -20,6 +22,7 @@ interface Section {
   name: string;
   lessons: Lesson[];
   collapsed?: boolean;
+  isEditing?: boolean;
 }
 
 @Component({
@@ -34,9 +37,12 @@ interface Section {
     MatIconModule,
     MatListModule,
     DragDropModule,
+    FormsModule,
+    MatDialogModule,
   ],
 })
 export class SideBarComponent {
+  editingIndex: number | null = null;
   items = [
     {
       name: 'Item 1',
@@ -46,7 +52,7 @@ export class SideBarComponent {
         { name: 'Lesson 3', type: 'help' },
       ],
       collapsed: false,
-    }
+    },
   ];
 
   constructor(private dialog: MatDialog) {}
@@ -68,7 +74,7 @@ export class SideBarComponent {
         if ('lessons' in item) {
           currentSection = item as Section;
           currentSection.lessons = [];
-          this.items.push({...currentSection, collapsed: false});
+          this.items.push({ ...currentSection, collapsed: false });
         } else {
           if (currentSection) {
             currentSection.lessons.push(item as Lesson);
@@ -79,20 +85,49 @@ export class SideBarComponent {
   }
 
   openAddLessonPopup() {
-    // Logic to open a popup for adding a lesson
-    console.log('Add Lesson Popup Opened');
+    const dialogRef = this.dialog.open(AddLessonPopupComponent, {
+      width: '800px',
+      panelClass: 'lesson-type-dialog',
+    });
+
+    dialogRef.afterClosed().subscribe((result) => {
+      if (result) {
+        // Add the new lesson to the first section (you might want to let user choose the section)
+        if (this.items.length > 0) {
+          this.items[0].lessons.push({
+            name: `New ${result.label}`,
+            type: result.icon,
+          });
+        }
+      }
+    });
   }
 
   openSearch() {
-    // Logic to open a search dialog or perform search
-    console.log('Search Opened');
+    const dialogRef = this.dialog.open(AddLessonPopupComponent, {
+      width: '800px',
+      panelClass: 'lesson-type-dialog',
+    });
+
+    dialogRef.afterClosed().subscribe((result) => {
+      if (result) {
+        // Add the new lesson to the first section (you might want to let user choose the section)
+        if (this.items.length > 0) {
+          this.items[0].lessons.push({
+            name: `New ${result.label}`,
+            type: result.icon,
+          });
+        }
+      }
+    });
   }
 
-  renameItem(index: number) {
-    const newName = prompt('Enter new name:', this.items[index].name);
-    if (newName) {
-      this.items[index].name = newName;
-    }
+  startEditing(index: number) {
+    this.editingIndex = index;
+  }
+
+  finishEditing(index: number) {
+    this.editingIndex = null;
   }
 
   deleteItem(index: number) {
