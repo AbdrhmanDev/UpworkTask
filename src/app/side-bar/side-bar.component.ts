@@ -43,6 +43,7 @@ interface Section {
   ],
 })
 export class SideBarComponent {
+  selectedIndex: number | null = null; // Track the selected item index
   editingIndex: number | null = null;
   items = [
     {
@@ -174,5 +175,9 @@ export class SideBarComponent {
 
   toggleCollapse(index: number) {
     this.items[index].collapsed = !this.items[index].collapsed;
+  }
+
+  selectItem(index: number): void {
+    this.selectedIndex = index;
   }
 }

@@ -92,29 +92,25 @@
     height: 36px;
     font-size: 13px;
   }
-  .add-lesson-button mat-icon{
+  .add-lesson-button mat-icon {
     border-radius: 50%;
     background-color: #4285f4;
-    
+
     padding: 4px;
-    color: white ;
-   
+    color: white;
   }
   &:hover .add-lesson-button {
     background: #4285f4;
-   
+
     color: white;
-    mat-icon{
+    mat-icon {
       border-radius: 50%;
       background-color: white;
       color: #4285f4;
       padding: 4px;
     }
-
   }
- 
 }
-
 
 mat-toolbar {
   font-size: 18px;
@@ -298,4 +294,28 @@ mat-toolbar {
     width: 100%;
     min-width: 100px;
   }
+}
+
+.icon-color-0 {
+  color: #4285f4; /* Blue */
+}
+
+.icon-color-1 {
+  color: #ea4335; /* Red */
+}
+
+.icon-color-2 {
+  color: #fbbc05; /* Yellow */
+}
+
+::ng-deep .icon-color-0 {
+  color: #4285f4; /* Blue */
+}
+
+::ng-deep .icon-color-1 {
+  color: #ea4335; /* Red */
+}
+
+::ng-deep .icon-color-2 {
+  color: #fbbc05; /* Yellow */
 }

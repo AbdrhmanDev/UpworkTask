@@ -50,7 +50,9 @@
 
     <!-- Lessons -->
     <div class="lessons-container" *ngIf="!item.collapsed">
-      <ng-container *ngFor="let lesson of item.lessons">
+      <ng-container
+        *ngFor="let lesson of item.lessons; let lessonIndex = index"
+      >
         <div cdkDrag class="lesson-container">
           <div class="drag-handle" cdkDragHandle>
             <mat-icon color="primary" style="color: #4285f4"
@@ -61,10 +63,10 @@
             <div class="lesson-flex-container">
               <mat-icon
                 matListIcon
-                [ngClass]="lesson.type"
-                style="color: #4285f4"
-                >{{ lesson.type }}</mat-icon
+                [ngClass]="'icon-color-' + (lessonIndex % 3)"
               >
+                {{ lesson.type }}
+              </mat-icon>
               <span matLine class="lesson-name">{{ lesson.name }}</span>
               <div class="lesson-actions">
                 <button mat-icon-button (click)="goToSection(lesson, i)">
