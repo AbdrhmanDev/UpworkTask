@@ -6,7 +6,9 @@
     <div cdkDrag class="item-container">
       <div class="section-header">
         <div class="drag-handle" cdkDragHandle>
-          <mat-icon color="primary">drag_indicator</mat-icon>
+          <mat-icon color="primary" style="color: #4285f4"
+            >drag_indicator</mat-icon
+          >
         </div>
         <div class="section-content">
           <div class="section-title">
@@ -25,7 +27,7 @@
               />
             </ng-template>
             <button mat-icon-button (click)="startEditing(i)">
-              <mat-icon color="accent">edit</mat-icon>
+              <mat-icon color="accent" style="color: #4285f4">edit</mat-icon>
             </button>
           </div>
           <div class="section-actions">
@@ -34,10 +36,10 @@
               class="delete-section-btn"
               (click)="deleteItem(i)"
             >
-              <mat-icon color="warn">delete</mat-icon>
+              <mat-icon color="warn" style="color: #ea4335">delete</mat-icon>
             </button>
             <button mat-icon-button (click)="toggleCollapse(i)">
-              <mat-icon color="primary">{{
+              <mat-icon color="primary" style="color: #4285f4">{{
                 item.collapsed ? "expand_more" : "expand_less"
               }}</mat-icon>
             </button>
@@ -51,20 +53,29 @@
       <ng-container *ngFor="let lesson of item.lessons">
         <div cdkDrag class="lesson-container">
           <div class="drag-handle" cdkDragHandle>
-            <mat-icon color="primary">drag_indicator</mat-icon>
+            <mat-icon color="primary" style="color: #4285f4"
+              >drag_indicator</mat-icon
+            >
           </div>
           <mat-list-item>
             <div class="lesson-flex-container">
-              <mat-icon matListIcon [ngClass]="lesson.type" color="primary">{{
-                lesson.type
-              }}</mat-icon>
+              <mat-icon
+                matListIcon
+                [ngClass]="lesson.type"
+                style="color: #4285f4"
+                >{{ lesson.type }}</mat-icon
+              >
               <span matLine class="lesson-name">{{ lesson.name }}</span>
               <div class="lesson-actions">
                 <button mat-icon-button (click)="goToSection(lesson, i)">
-                  <mat-icon color="primary">open_in_new</mat-icon>
+                  <mat-icon color="secondary" style="color: #4285f4"
+                    >open_in_new</mat-icon
+                  >
                 </button>
                 <button mat-icon-button (click)="deleteLesson(i, lesson)">
-                  <mat-icon color="warn">delete</mat-icon>
+                  <mat-icon color="warn" style="color: #ea4335"
+                    >delete</mat-icon
+                  >
                 </button>
               </div>
             </div>
@@ -77,11 +88,11 @@
   <!-- Actions -->
   <div class="section-actions">
     <button mat-button class="add-lesson-button" (click)="openAddLessonPopup()">
-      <mat-icon class="add">add</mat-icon>
+      <mat-icon class="add" style="color: #4285f4">add</mat-icon>
       Add a lesson
     </button>
     <button mat-button class="search-button" (click)="openSearch()">
-      <mat-icon color="primary">search</mat-icon>
+      <mat-icon color="primary" style="color: #4285f4">search</mat-icon>
       Search materials
     </button>
   </div>
